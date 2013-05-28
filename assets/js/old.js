@@ -4,7 +4,7 @@ var renderer = new THREE.WebGLRenderer({ antialias: true }),
     projector,
     grassTexture,
     woolTexture,
-    cubes = [];
+    sheep = [];
 
 var initScene = function initScene() {
   scene.fog = new THREE.Fog( 0xf4ffc6, 0, 300 );
@@ -71,7 +71,7 @@ var createFloor = function createFloor() {
     }
   }
 
-  grassTexture.wrapT = THREE.RepeatWrapping;
+  grassTexture.wapT = THREE.RepeatWrapping;
   grassTexture.wrapS = THREE.RepeatWrapping;
 
   var floor = new THREE.Mesh( plane, new THREE.MeshPhongMaterial({ map: grassTexture, wireframe: false }));
@@ -128,25 +128,9 @@ var createSheep = function createSheep() {
 
 };
 
-var onDocumentMouseDown = function onDocumentMouseDown( event ) {
-  event.preventDefault();
-
-  var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1,
-                                - ( event.clientY / window.innerHeight ) * 2 + 1,
-                                    0.5 );
-  projector.unprojectVector( vector, camera );
-
-  var ray = new THREE.Ray( camera.position, vector.subSelf( camera.position ).normalize() );
-
-  var intersects = ray.intersectObjects( cubes );
-
-  if ( intersects.length > 0 ) {
-    protagonist = intersects[ 0 ].object;
-  }
-
-};
 
 var render = function render() {
+
   requestAnimationFrame( render );
 
   cubes.forEach( function( cube ) {
