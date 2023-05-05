@@ -177,7 +177,7 @@ var render = function render() {
 
 var loadAudio = function loadAudio( url, cb ) {
 
-    var context = new webkitAudioContext();
+    var context = new AudioContext();
 
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
